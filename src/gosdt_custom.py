@@ -280,11 +280,11 @@ class GridSearchCVGOSDT:
                 all_model_param_lst.append(param_dict_with_result)
                 pass
 
-                best_params_dict = max(params_metric_list, key=lambda x:x[self.metric])
-                model_param_lst.append(best_params_dict)
-                print('\nBest Result:')
-                print(best_params_dict)
-                pass
+            best_params_dict = max(params_metric_list, key=lambda x:x[self.metric])
+            model_param_lst.append(best_params_dict)
+            print('\nBest Result:')
+            print(best_params_dict)
+            pass
 
         all_models_df = pd.DataFrame(all_model_param_lst)
         average_scores_df = all_models_df.groupby([col for col in all_models_df.columns if col not in [self.metric]]).mean()
