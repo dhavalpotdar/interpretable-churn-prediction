@@ -25,3 +25,8 @@ This is a Python template for Data Science projects with CI setup using GitHub A
     ├── __init__.py
     └── test_lib.py
 ```
+
+
+Run: sudo apt-get update
+Run: sudo apt-get install libsuitesparse-dev
+Run: pip install scikit-sparse
