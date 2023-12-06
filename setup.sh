@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-echo 'export SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=true' >> ~/.bashrc
-
 
 virtualenv ~/.venv
 source ~/.venv/bin/activate
+echo 'export SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=true' >> ~/.bashrc
 make install
 
 
