@@ -10,9 +10,18 @@ The data comes from [Maven Analytics](https://www.mavenanalytics.io/blog/maven-c
 
 ## Run
 
+Python version: 3.10.12
+
 1. CD into the project directory
-2. Run `make install`
-3. Open `experiments.ipynb`
+2. Run create and virtual environment and run: `make install`
+3. Open and run `experiments.ipynb`.
+
+If you have trouble installing GOSDT, follow these steps:
+
+1. Open: `nano ~/.bashrc`
+2. Add this variable: `export SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=true`
+3. Run this: `source ~/.bashrc`
+4. Run: `pip install gosdt`
 
 
 ## Methods
