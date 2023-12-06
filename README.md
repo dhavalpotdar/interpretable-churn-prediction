@@ -6,6 +6,13 @@ Churn prediction is a classic problem in Machine Learning. A quick survey of Kag
 
 The data comes from [Maven Analytics](https://www.mavenanalytics.io/blog/maven-churn-challenge), 2021 as part of their churn prediction challenge. The main table contains information on all 7,043 customers from a telecommunications company in California in Q2 2022. An additional table contains the zip-code level population, which I join with the main dataset. Each record represents one customer and contains details about their demographics, location, tenure, subscription services, and status for the quarter (joined, stayed, or churned). I ignore the “joined” category (454 customers), thus framing this as a binary classification problem.
 
+## Run
+
+1. CD into the project directory
+2. Run `make install`
+3. Open `experiments.ipynb`
+
+
 ## Methods
 
 It is not enough to say which customer will churn. Identifying why the customer will churn is equally important. Keeping interpretability at the forefront, while minimizing the performance cost heavily informs the choice of algorithms for this problem. The following four interpretable ML algorighms are used in this project:
@@ -20,18 +27,27 @@ It is not enough to say which customer will churn. Identifying why the customer 
 
 GOSDT gives a highly interpretable sparse tree that is provably optimal. The figure below describes the process to decide whether a certain customer will churn.
 
+![GOSDT Result](./images/GOSDT.png "Resultant Sparse Optimal Tree")
+
 ### Global feature insights by GAM
 
 The figure below shows the spline/factor function for each of the 15 variables, with the log-odds on the y-axis.
+
+![Splines and Factors](./images/GAM.png "Global Feature Importances")
 
 
 ### Regularization paths by L0Learn
 
 L0Learn had the advantage of L0 regularization and thus fast feature selection. In the figure below each dashed line represents the regularization path of a feature and the circles represent the support sizes. The most important features are those with a non-zero coefficient, regardless of the support size.
 
+![Regularization Paths](./images/L0Learn.png "Feature Selection: L0 Regularization Paths")
+
+
 ### Local explanations by EBM
 
 The Python library that implements EBM gives a convenient way to identify the contributions for each feature toward the prediction. Below is an example of a specific positive-class prediction made by the model.
+
+![Local Prediction](./images/EBM_Local.png "Positive Prediction explained by EBM")
 
 ## Insights
 
@@ -43,3 +59,27 @@ The Python library that implements EBM gives a convenient way to identify the co
 ## Conclusion
 
 Although the predictive performance of interpretable models did not match that of black-box ensemble methods, interpretable models give deep insights into the data. Not only do they highlight global trends and observable relationships, but they also give local explanations for every single prediction they make. These models can be fine-tuned to minimize false negatives or false positives, and in that respect, get comparable performance to black-box models with the added advantage of complete end-to-end transparency. In practice, high-stakes decisions are rarely made based on predictions of black-box models that nobody can vouch for. Interpretable models can aid human decision-making, rather than substituting it, and thus help data science take a long stride in the direction of “open” AI.
+
+## Citations
+
+[1.] Breiman, L., Friedman, J., Charles, S. J., & Olshen, R. A. (1984). Classifica(on and Regression Trees.
+
+[2.] Carlon, A., Espath, L., Lopez, R., & Tempone, R. (2020, November). MulK-IteraKon StochasKc OpKmizers.
+
+[3.] HasKe, T., & Tibshirani, R. (1986). Generalized AddiKve Models. Sta(s(cal Science, 1(3), 297- 318.
+
+[4.] Hazimeh, H., Mazumder, R., & Nonet, T. (2022). L0Learn: A Scalable Package for Sparse Learning using L0 RegularizaKon.
+
+[5.] Hu, X., Rudin, C., & Seltzer, M. (2019). OpKmal Sparse Decision Trees. Advances in Neural Informa(on Processing Systems, 7267–7275.
+
+[6.] Maven AnalyKcs. (2022). Maven Churn Challenge. Retrieved from h^ps://www.mavenanalyKcs.io/blog/maven-churn-challenge
+
+[7.] Nori, H., Jenkins, S., Koch, P., & Caruana, R. (2019). InterpretML: A Unified Framework for Machine Learning Interpretability.
+
+[8.] Quinlan, J. (1993). C4.5: Programs for Machine Learning. BalKmore, Maryland, United States of America.
+
+[9.] Saad, Z. (2022). Customer Churn Predic(on on Telecom Dataset. Retrieved from Kaggle: h^ps://www.kaggle.com/code/zakriasaad1/customer-churn-predicKon-on-telecom- dataset
+
+[10.] Wang, Y., Huang, H., Rudin, C., & Shaposhnik, Y. (2021). Understanding How Dimension ReducKon Tools Work: An Empirical Approach to Deciphering t-SNE, UMAP, TriMap, and PaCMAP 
+
+[11.] for Data VisualizaKon. Journal of Machine Learning Research, 22, 1-73.
