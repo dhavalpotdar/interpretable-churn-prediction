@@ -62,24 +62,24 @@ Although the predictive performance of interpretable models did not match that o
 
 ## Citations
 
-[1.] Breiman, L., Friedman, J., Charles, S. J., & Olshen, R. A. (1984). Classifica(on and Regression Trees.
+[1.] Breiman, L., Friedman, J., Charles, S. J., & Olshen, R. A. (1984). Classification and Regression Trees.
 
-[2.] Carlon, A., Espath, L., Lopez, R., & Tempone, R. (2020, November). MulK-IteraKon StochasKc OpKmizers.
+[2.] Carlon, A., Espath, L., Lopez, R., & Tempone, R. (2020, November). Multi-Iteration Stochastic Optimizers.
 
-[3.] HasKe, T., & Tibshirani, R. (1986). Generalized AddiKve Models. Sta(s(cal Science, 1(3), 297- 318.
+[3.] Hastie, T., & Tibshirani, R. (1986). Generalized Additive Models. Statistical Science, 1(3), 297- 318.
 
-[4.] Hazimeh, H., Mazumder, R., & Nonet, T. (2022). L0Learn: A Scalable Package for Sparse Learning using L0 RegularizaKon.
+[4.] Hazimeh, H., Mazumder, R., & Nonet, T. (2022). L0Learn: A Scalable Package for Sparse Learning using L0 Regularization.
 
-[5.] Hu, X., Rudin, C., & Seltzer, M. (2019). OpKmal Sparse Decision Trees. Advances in Neural Informa(on Processing Systems, 7267–7275.
+[5.] Hu, X., Rudin, C., & Seltzer, M. (2019). Optimal Sparse Decision Trees. Advances in Neural Informa(on Processing Systems, 7267–7275.
 
-[6.] Maven AnalyKcs. (2022). Maven Churn Challenge. Retrieved from h^ps://www.mavenanalyKcs.io/blog/maven-churn-challenge
+[6.] Maven Analytics. (2022). Maven Churn Challenge. Retrieved from https://www.mavenanalytics.io/blog/maven-churn-challenge
 
 [7.] Nori, H., Jenkins, S., Koch, P., & Caruana, R. (2019). InterpretML: A Unified Framework for Machine Learning Interpretability.
 
-[8.] Quinlan, J. (1993). C4.5: Programs for Machine Learning. BalKmore, Maryland, United States of America.
+[8.] Quinlan, J. (1993). C4.5: Programs for Machine Learning. Baltimore, Maryland, United States of America.
 
-[9.] Saad, Z. (2022). Customer Churn Predic(on on Telecom Dataset. Retrieved from Kaggle: h^ps://www.kaggle.com/code/zakriasaad1/customer-churn-predicKon-on-telecom- dataset
+[9.] Saad, Z. (2022). Customer Churn Predic(on on Telecom Dataset. Retrieved from Kaggle: https://www.kaggle.com/code/zakriasaad1/customer-churn-prediction-on-telecom-dataset
 
-[10.] Wang, Y., Huang, H., Rudin, C., & Shaposhnik, Y. (2021). Understanding How Dimension ReducKon Tools Work: An Empirical Approach to Deciphering t-SNE, UMAP, TriMap, and PaCMAP 
+[10.] Wang, Y., Huang, H., Rudin, C., & Shaposhnik, Y. (2021). Understanding How Dimension Reduction Tools Work: An Empirical Approach to Deciphering t-SNE, UMAP, TriMap, and PaCMAP 
 
-[11.] for Data VisualizaKon. Journal of Machine Learning Research, 22, 1-73.
+[11.] for Data Visualization. Journal of Machine Learning Research, 22, 1-73.
