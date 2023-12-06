@@ -10,8 +10,6 @@ To `pip install gosdt`, follow these steps:
 from gosdt.model.threshold_guess import compute_thresholds, cut
 from gosdt.model.gosdt import GOSDT
 
-import warnings
-import io
 import json
 import pathlib
 import itertools
@@ -20,17 +18,18 @@ import numpy as np
 import pandas as pd
 
 from sklearn.ensemble import GradientBoostingClassifier
-from sklearn.model_selection import GridSearchCV, train_test_split
-from sklearn.metrics import f1_score
-
 
 class CustomGOSDT(GOSDT):
+    '''
+    Inherits GOSDT and adds more convenience methods.
+    '''
     def __init__(self):
         self.thresholds = None
         self.np_thresholds = None
         self.header = None
+        self.config = None
 
-    def config(self, config_dict):
+    def _config(self, config_dict):
         self.config = config_dict
         pass
 
@@ -83,7 +82,7 @@ class CustomGOSDT(GOSDT):
         - computing lower bounds using GradientBoostingClassifier.
         """
         # compute thresholds and save them
-        X_binarized, thresholds, header, threshold_guess_time = self._compute_data_thresholds(X.copy(), y.copy(), n_est, max_depth)
+        X_binarized, thresholds, header, _ = self._compute_data_thresholds(X.copy(), y.copy(), n_est, max_depth)
         self.thresholds = list(X_binarized.columns.values)
         self.np_thresholds = thresholds
         self.header = header
@@ -111,7 +110,6 @@ class CustomGOSDT(GOSDT):
         if verbose == 1:
             train_acc = self.score(X_binarized, y)
             n_leaves = self.leaves()
-            n_nodes = self.nodes()
             time = self.utime
             print("Model training time: {}".format(time))
             print("Training accuracy: {:.1%}".format(train_acc))
@@ -187,7 +185,16 @@ class CustomGOSDT(GOSDT):
 
 
 class GridSearchCVGOSDT:
-    def __init__(self, model, param_dict, metric, folds):
+    '''
+    Takes CustomGOSDT and adds k-fold CV functionality to it.
+    '''
+    def __init__(self, model: CustomGOSDT, param_dict: dict, metric: str, folds: int):
+        '''
+        model: uninstantiated CustomGOSDT
+        param_dict: hyperparameters for GOSDT
+        metric: one of 'Accuracy', 'F1 Score', 'Precision', 'Recall', 'TPR', 'FPR'
+        folds: number of folds 'k'
+        '''
         self.folds = folds
         self.param_dict = param_dict
         self.model = model
@@ -234,7 +241,17 @@ class GridSearchCVGOSDT:
                 'F1 Score': f1,
                 'Accuracy': accuracy}
 
-    def run_validation(self, X, y, n_est, max_depth, verbose):
+    def run_validation(self, X: pd.DataFrame, y: pd.Series, n_est: int, max_depth: int, verbose: int) -> dict:
+        '''
+        Workhorse function that runs the k-fold CV.
+
+        X: data
+        y: labels - 0/1
+        n_est: number of estimators for guessing thresholds
+        max_depth: max tree depth for the estimator that computes thresholds, not the GOSDT.
+
+        Returns: dict with best parameters and corresponding metric score.
+        '''
 
         data = pd.concat([X, y], axis='columns')
         split_data_list = np.array_split(data, self.folds)
@@ -262,7 +279,7 @@ class GridSearchCVGOSDT:
 
                 # model
                 model = self.model()
-                model.config(params)
+                model._config(params)
 
                 model.fit_tree(X=train_set.iloc[:, :-1],
                                 y=train_set.iloc[:, -1],
@@ -300,5 +317,6 @@ class GridSearchCVGOSDT:
                        'best_params': json.loads(best_param_dict),
                        'best_result': best_results_dict,
                        'all_models': all_models_df}
+        
         return result_dict
 
