@@ -29,7 +29,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "bash setup.sh"
+	"postCreateCommand": "bash setup.sh && export SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=true"
 	
 	// Configure tool-specific properties.
 	// "customizations": {},
